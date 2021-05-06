@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "855607739249-8fafncpe4pfvsgg1vi1lg67i1alui4uj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.stockchart",
+            "certificate_hash": "acf93e705c748a97f26f869a0e02cd0dfe993ff8"
+          }
+        },
+        {
           "client_id": "855607739249-dl73634foqtb07garnris5hcqg6nt5ed.apps.googleusercontent.com",
           "client_type": 3
         }
