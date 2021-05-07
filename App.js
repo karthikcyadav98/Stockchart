@@ -11,11 +11,11 @@ const App = () => {
     })
       .then(() => {
         // this.props.handlePopupDismissed();
-        alert('Authenticated successfully');
+        // alert('Authenticated successfully');
       })
       .catch(error => {
-        // BackHandler.exitApp();
-        alert(error);
+        BackHandler.exitApp();
+        // alert(error);
       });
   }, []);
 

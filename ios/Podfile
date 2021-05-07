@@ -18,6 +18,8 @@ target 'Stockchart' do
   )
 
 
+  pod 'react-native-webview', :path => '../node_modules/react-native-webview'
+
   target 'StockchartTests' do
     inherit! :complete
     # Pods for testing

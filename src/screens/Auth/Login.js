@@ -26,6 +26,11 @@ const Login = ({navigation}) => {
   const [state, setState] = useState(initState);
 
   useEffect(() => {
+    AsyncStorage.getItem('user').then(res => {
+      if (res !== null) {
+        navigation.replace('Home');
+      }
+    });
     getCurrentUserInfo();
   }, []);
 
@@ -59,14 +64,14 @@ const Login = ({navigation}) => {
       await GoogleSignin.hasPlayServices({showPlayServicesUpdateDialog: true});
       const userInfo = await GoogleSignin.signIn();
       if (userInfo) {
-        navigation.navigate('Home');
+        try {
+          AsyncStorage.setItem('user', JSON.stringify(userInfo));
+        } catch (e) {
+          console.error(e);
+        }
+        navigation.replace('Home');
       }
       setState({userInfo});
-      try {
-        AsyncStorage.setItem('user', JSON.stringify(userInfo));
-      } catch (e) {
-        console.error(e);
-      }
     } catch (error) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
         console.log('cancel');
