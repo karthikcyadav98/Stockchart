@@ -1,10 +1,12 @@
-import React, {useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import Navigation from './src/Navigation/Navigation';
 import {NavigationContainer} from '@react-navigation/native';
 import FingerprintScanner from 'react-native-fingerprint-scanner';
-import {BackHandler} from 'react-native';
+import {View, BackHandler} from 'react-native';
 
 const App = () => {
+  const [isAuth, setAuth] = useState(false);
+
   useEffect(() => {
     FingerprintScanner.authenticate({
       description: 'Scan your fingerprint on the device scanner to continue',
@@ -12,6 +14,7 @@ const App = () => {
       .then(() => {
         // this.props.handlePopupDismissed();
         // alert('Authenticated successfully');
+        setAuth(true);
       })
       .catch(error => {
         BackHandler.exitApp();
@@ -21,7 +24,7 @@ const App = () => {
 
   return (
     <NavigationContainer>
-      <Navigation />
+      <Navigation isAuth={isAuth} />
     </NavigationContainer>
   );
 };

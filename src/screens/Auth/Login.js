@@ -22,7 +22,7 @@ const initState = {
   isSigninInProgress: false,
 };
 
-const Login = ({navigation}) => {
+const Login = ({navigation, isAuth}) => {
   const [state, setState] = useState(initState);
 
   useEffect(() => {
@@ -94,28 +94,32 @@ const Login = ({navigation}) => {
     setState({currentUser});
   };
 
-  return (
-    <View style={styles.container}>
-      <TouchableOpacity
-        disabled={state.isSigninInProgress}
-        style={styles.btn}
-        onPress={() => signIn()}>
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-          }}>
-          <Icon
-            style={{marginRight: 20}}
-            name="google"
-            size={25}
-            color="#fff"
-          />
-          <Text style={styles.btnText}>Sign In with Google</Text>
-        </View>
-      </TouchableOpacity>
-    </View>
-  );
+  if (isAuth) {
+    return (
+      <View style={styles.container}>
+        <TouchableOpacity
+          disabled={state.isSigninInProgress}
+          style={styles.btn}
+          onPress={() => signIn()}>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+            }}>
+            <Icon
+              style={{marginRight: 20}}
+              name="google"
+              size={25}
+              color="#fff"
+            />
+            <Text style={styles.btnText}>Sign In with Google</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
+    );
+  } else {
+    return <View style={{flex: 1, backgroundColor: '#000'}} />;
+  }
 };
 
 export default Login;

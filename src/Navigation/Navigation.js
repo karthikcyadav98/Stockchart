@@ -8,7 +8,7 @@ import Home from '../screens/Home/Home';
 
 const Stack = createStackNavigator();
 
-const Navigation = () => {
+const Navigation = ({isAuth}) => {
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -16,7 +16,7 @@ const Navigation = () => {
         options={{
           headerShown: false,
         }}>
-        {props => <Login {...props} />}
+        {props => <Login {...props} isAuth={isAuth} />}
       </Stack.Screen>
 
       <Stack.Screen
@@ -24,7 +24,7 @@ const Navigation = () => {
         options={{
           headerShown: false,
         }}>
-        {props => <Home {...props} />}
+        {props => <Home {...props} isAuth={isAuth} />}
       </Stack.Screen>
     </Stack.Navigator>
   );
